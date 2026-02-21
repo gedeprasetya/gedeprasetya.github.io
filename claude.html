@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Developer Bali — Performance-First Websites</title>
+    <meta
+      name="description"
+      content="Freelance web developer based in Bali. I build fast, secure, conversion-focused websites for villas, hotels, and small businesses."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=DM+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="claude.css">
+  </head>
+  <body>
+    <div class="cursor-dot" id="cursor"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- ═══════════════════════════════════════
+     NAV
+════════════════════════════════════════ -->
+    <nav id="nav">
+      <a href="#hero" class="nav-logo">Gede<span>.</span>Prasetya</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#problem" data-section="problem">Services</a></li>
+        <li><a href="#solution" data-section="solution">Approach</a></li>
+        <li><a href="#services" data-section="services">Work</a></li>
+        <li><a href="#why" data-section="why">About</a></li>
+        <li><a href="#cta" data-section="cta">Contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a
+          href="https://wa.me/6281353443517"
+          class="nav-cta desktop-cta"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          WhatsApp
+        </a>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- mobile drawer -->
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+      role="dialog"
+      aria-label="Navigation menu"
+    >
+      <a href="#problem" class="mob-link">Services</a>
+      <a href="#solution" class="mob-link">Approach</a>
+      <a href="#services" class="mob-link">Work</a>
+      <a href="#why" class="mob-link">About</a>
+      <a href="#cta" class="mob-link">Contact</a>
+      <a
+        href="https://wa.me/6281353443517"
+        class="mob-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+    <div style="max-width: 1080px; margin: 0 auto">
+      <section id="hero">
+        <div class="hero-eyebrow ha1">
+          <span class="live-dot"></span>Based in Bali, Indonesia
+        </div>
+        <h1 class="ha2">
+          Websites that work<br />as hard as<br /><em>you do.</em>
+        </h1>
+        <p class="hero-sub ha3">
+          I build <strong>fast, secure, conversion-ready</strong> websites for
+          villas, hotels, and businesses that need more than a good-looking
+          template.
+        </p>
+        <a
+          href="https://wa.me/6281353443517"
+          class="btn-primary ha4"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          Start a Project on WhatsApp
+        </a>
+        <div class="hero-meta ha5">
+          <div class="hero-stat">
+            <strong>2+</strong>
+            <span>Years experience</span>
+          </div>
+          <div class="hero-stat">
+            <strong>15+</strong>
+            <span>Projects delivered</span>
+          </div>
+          <div class="hero-stat">
+            <strong>3+</strong>
+            <span>Projects On-Going</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+     PROBLEM
+════════════════════════════════════════ -->
+    <section id="problem">
+      <div class="container">
+        <div class="problem-intro">
+          <div class="section-tag reveal">The real problem</div>
+          <h2 class="reveal d1">
+            Most websites<br />don't actually <em>earn.</em>
+          </h2>
+          <p class="reveal d2">
+            A beautiful website that loads slowly, ranks nowhere, and sends
+            visitors to a dead inbox isn't an asset. It's overhead.
+          </p>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-card reveal">
+            <span class="problem-num">01</span>
+            <h3>Too slow to compete</h3>
+            <p>
+              Every second of load time costs bookings. A 3-second delay loses
+              up to 50% of visitors before your page even renders.
+            </p>
+          </div>
+          <div class="problem-card reveal d1">
+            <span class="problem-num">02</span>
+            <h3>Templates that blend in</h3>
+            <p>
+              Page builders create sites that look like every other property. No
+              distinctive identity. No reason to trust you over the competition.
+            </p>
+          </div>
+          <div class="problem-card reveal d2">
+            <span class="problem-num">03</span>
+            <h3>No conversion thinking</h3>
+            <p>
+              Traffic without intention is noise. Most sites have no clear path
+              from visitor to inquiry — and no one notices until revenue stalls.
+            </p>
+          </div>
+          <div class="problem-card reveal d3">
+            <span class="problem-num">04</span>
+            <h3>Infrastructure gaps</h3>
+            <p>
+              Broken email deliverability. No SSL. Shared hosting that falls
+              over under real load. Small issues that quietly cost big.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+     SOLUTION
+════════════════════════════════════════ -->
+    <section id="solution">
+      <div class="container">
+        <div class="section-tag reveal">How I approach it</div>
+        <h2 class="reveal d1">
+          Engineering-first.<br />Conversion-<em>aware.</em>
+        </h2>
+        <div class="solution-layout">
+          <div class="solution-left reveal d2">
+            <p>
+              I don't hand you a theme and call it a project. Every engagement
+              starts with understanding how your site connects to your actual
+              business — then building it to perform at that level.
+            </p>
+            <p>
+              That means clean code, real performance budgets, infrastructure
+              that scales, and a system you can own long-term.
+            </p>
+          </div>
+          <ul class="solution-list">
+            <li class="reveal d1">
+              <div class="sol-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <div class="sol-text">
+                <strong>Performance-First Build</strong>
+                <span
+                  >Core Web Vitals, image optimization, minimal JS — so the page
+                  loads before the visitor decides to leave.</span
+                >
+              </div>
+            </li>
+            <li class="reveal d2">
+              <div class="sol-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <div class="sol-text">
+                <strong>Security &amp; Reliability</strong>
+                <span
+                  >SSL, firewall rules, malware scanning, and hardened WordPress
+                  configurations as defaults, not afterthoughts.</span
+                >
+              </div>
+            </li>
+            <li class="reveal d3">
+              <div class="sol-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="sol-text">
+                <strong>Technical SEO Setup</strong>
+                <span
+                  >Proper schema, canonical tags, sitemap, robots, and page
+                  structure that gives search engines something to rank.</span
+                >
+              </div>
+            </li>
+            <li class="reveal d4">
+              <div class="sol-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="sol-text">
+                <strong>Email System &amp; Automation</strong>
+                <span
+                  >AWS SES + Sendy for reliable transactional and marketing
+                  email. Inquiries land in inbox, not spam.</span
+                >
+              </div>
+            </li>
+            <li class="reveal d5">
+              <div class="sol-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div class="sol-text">
+                <strong>Clean Architecture</strong>
+                <span
+                  >Code that any developer can read, maintain, and extend — not
+                  a dependency maze built around a page builder.</span
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+     SERVICES
+════════════════════════════════════════ -->
+    <section id="services">
+      <div class="container">
+        <div class="section-tag reveal">What I offer</div>
+        <h2 class="reveal d1">Selected <em>services.</em></h2>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <span class="service-number">S–01</span>
+            <h3>WordPress Development</h3>
+            <p>
+              Custom themes, block editor builds, and ACF-driven content
+              systems. No bloated builders. Clean and fast from the ground up.
+            </p>
+            <div class="service-tag">
+              <span class="tag">WordPress</span>
+              <span class="tag">PHP</span>
+              <span class="tag">ACF</span>
+            </div>
+          </div>
+          <div class="service-card reveal d1">
+            <span class="service-number">S–02</span>
+            <h3>Performance Optimization</h3>
+            <p>
+              Audit, fix, and tune existing sites for Core Web Vitals. Caching,
+              image pipeline, database queries, hosting stack — all of it.
+            </p>
+            <div class="service-tag">
+              <span class="tag">Core Web Vitals</span>
+              <span class="tag">CDN</span>
+              <span class="tag">Caching</span>
+            </div>
+          </div>
+          <div class="service-card reveal d2">
+            <span class="service-number">S–03</span>
+            <h3>Hospitality Landing Pages</h3>
+            <p>
+              Designed for villas and hotels. Direct booking focus,
+              mobile-first, built around the guest's decision-making journey.
+            </p>
+            <div class="service-tag">
+              <span class="tag">Bali Villas</span>
+              <span class="tag">Hotels</span>
+              <span class="tag">Booking</span>
+            </div>
+          </div>
+          <div class="service-card reveal d1">
+            <span class="service-number">S–04</span>
+            <h3>Email System Setup</h3>
+            <p>
+              Transactional email via AWS SES. Self-hosted newsletters with
+              Sendy. Proper DKIM, SPF, and DMARC so you actually deliver.
+            </p>
+            <div class="service-tag">
+              <span class="tag">AWS SES</span>
+              <span class="tag">Sendy</span>
+              <span class="tag">SMTP</span>
+            </div>
+          </div>
+          <div class="service-card reveal d2">
+            <span class="service-number">S–05</span>
+            <h3>Technical Consulting</h3>
+            <p>
+              One-time or ongoing advisory for hosting decisions, stack choices,
+              security audits, and site migration strategy.
+            </p>
+            <div class="service-tag">
+              <span class="tag">AWS</span>
+              <span class="tag">Architecture</span>
+              <span class="tag">Security</span>
+            </div>
+          </div>
+          <div
+            class="service-card reveal d3"
+            style="
+              background: var(--accent-glow);
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            "
+          >
+            <p
+              style="
+                font-family: &quot;Plus Jakarta Sans&quot;, sans-serif;
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--white);
+                margin-bottom: 20px;
+                letter-spacing: -0.01em;
+                line-height: 1.4;
+              "
+            >
+              Have something specific in mind?
+            </p>
+            <a
+              href="https://wa.me/6281353443517"
+              class="btn-primary"
+              target="_blank"
+              rel="noopener"
+              style="font-size: 13px; padding: 12px 22px"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
+              </svg>
+              Let's talk
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+     WHY
+════════════════════════════════════════ -->
+    <section id="why">
+      <div class="container">
+        <div class="section-tag reveal">Differentiator</div>
+        <h2 class="reveal d1">
+          Built to think about<br />your <em>whole system.</em>
+        </h2>
+        <div class="why-layout">
+          <div class="why-points" style="margin-top: 48px">
+            <div class="why-point reveal">
+              <span class="why-num">01</span>
+              <div>
+                <h4>Results over aesthetics</h4>
+                <p>
+                  Design serves a function. Every layout decision, CTA
+                  placement, and load-time trade-off is made with your
+                  conversion goal in mind — not a portfolio screenshot.
+                </p>
+              </div>
+            </div>
+            <div class="why-point reveal d1">
+              <span class="why-num">02</span>
+              <div>
+                <h4>Full stack understanding</h4>
+                <p>
+                  I work across frontend, backend, hosting, DNS, and email
+                  infrastructure. You don't need three vendors to launch a solid
+                  site. One point of contact.
+                </p>
+              </div>
+            </div>
+            <div class="why-point reveal d2">
+              <span class="why-num">03</span>
+              <div>
+                <h4>Long-term system thinking</h4>
+                <p>
+                  Every project is built so it can grow. No lock-in. No mystery
+                  code. No dependency on me to change a heading. You own what I
+                  build.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-card reveal d2">
+            <span class="stack-label">Technical stack</span>
+            <div class="stack-badges">
+              <span class="badge">WordPress</span>
+              <span class="badge">PHP</span>
+              <span class="badge">MySQL</span>
+              <span class="badge">AWS EC2</span>
+              <span class="badge">AWS SES</span>
+              <span class="badge">CloudFront</span>
+              <span class="badge">Nginx</span>
+              <span class="badge">Sendy</span>
+              <span class="badge">HTML/CSS/JS</span>
+              <span class="badge">Git</span>
+              <span class="badge">Cloudflare</span>
+              <span class="badge">Let's Encrypt</span>
+            </div>
+            <div class="stack-divider"></div>
+            <p class="stack-note">
+              Bali-based. Works remotely with clients across Indonesia,
+              Australia, and Europe. Fluent in handling cross-timezone projects
+              without drama.
+            </p>
+            <a
+              href="https://wa.me/6281353443517"
+              class="btn-primary"
+              style="font-size: 13px; padding: 13px 24px"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
+              </svg>
+              Discuss your project
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+     FINAL CTA
+════════════════════════════════════════ -->
+    <section id="cta">
+      <div class="container">
+        <div class="section-tag reveal">Ready?</div>
+        <h2 class="reveal d1">
+          Let's build something<br />that actually <em>converts.</em>
+        </h2>
+        <p class="sub reveal d2">
+          No retainer. No lengthy proposal. Just a direct conversation about
+          what you need.
+        </p>
+        <div class="reveal d3">
+          <a
+            href="https://wa.me/6281353443517"
+            class="btn-primary"
+            target="_blank"
+            rel="noopener"
+            style="font-size: 16px; padding: 18px 40px; margin: 0 auto"
+          >
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              />
+            </svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+        <p class="cta-number reveal d4">
+          <strong>081353443517</strong> — available on WhatsApp
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+     FLOATING BUTTONS
+════════════════════════════════════════ -->
+    <div class="float-group" id="floatGroup">
+      <button
+        class="float-btn float-top"
+        id="backToTop"
+        aria-label="Back to top"
+        title="Back to top"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+      <a
+        href="https://wa.me/6281353443517"
+        class="float-btn float-wa"
+        target="_blank"
+        rel="noopener"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
+        <!-- <span class="float-wa-label">Chat via WhatsApp</span> -->
+        <span class="float-wa-ping"></span>
+      </a>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="border-top: 1px solid var(--border)">
+      <footer>
+        <span>© 2025 Gede Prasetya</span>
+        <span class="footer-loc">Bali, Indonesia</span>
+        <span
+          ><a
+            href="https://wa.me/6281353443517"
+            class="footer-wa"
+            target="_blank"
+            rel="noopener"
+            >wa.me/6281353443517</a
+          ></span
+        >
+      </footer>
+    </div>
+    <script src="claude.js"></script>
+  </body>
+</html>
